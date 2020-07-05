@@ -34,13 +34,12 @@ To monitor easily, logon to the GKE console to watch the setup go through...
 
 
 ### How to
-Each yaml script is run using ```kubectl apply -f <filename>```
-
 First, create the cluster and setup kubectl with using
 
 ```1createcluster.sh```
 
-Then the nfs-server scripts
+
+Then the nfs-server scripts - each yaml file is run using ```kubectl apply -f <filename>```
 
 ```1nfsstorage.yml```  creates the regular 1Gi storage
 
@@ -51,11 +50,11 @@ Then the nfs-server scripts
 ```4claimonnfs.yml``` creates the ReadWriteMany claim that the dns cluster will use
 
 
-Then, the scripts in dnscrypt-cluster
+Then, the dnscrypt-cluster
 
 ```3exposeudp.yml``` will create the udp service and allocate an external ip which you can retrieve using
 
-```4getip.sh``` to retrieve the external ip address of the cluster
+```4getip.sh``` shell script to retrieve the external ip address of the cluster
 
 ```5exposetcp.yml``` should be modified to use the external ip address
 
