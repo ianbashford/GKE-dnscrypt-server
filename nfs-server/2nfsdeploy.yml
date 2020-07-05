@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dnscrypt-uk-nfs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dnscrypt-uk-nfs
+  template:
+    metadata:
+      labels:
+        app: dnscrypt-uk-nfs
+    spec:
+      containers:
+      - name: dnscrypt-uk-nfs
+        image: k8s.gcr.io/volume-nfs:0.8
+        ports:
+          - name: nfs
+            containerPort: 2049
+          - name: mountd
+            containerPort: 20048
+          - name: rpcbind
+            containerPort: 111
+        securityContext:
+          privileged: true
+        volumeMounts:
+          - mountPath: /exports
+            name: dnscrypt-uk-nfs-volume
+      volumes:
+        - name: dnscrypt-uk-nfs-volume
+          persistentVolumeClaim:
+            claimName: dnscrypt-uk-nfs-pvclaim

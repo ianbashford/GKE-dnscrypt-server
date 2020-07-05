@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  labels:
+    service: dnscrypt-uk
+  name: dnscrypt-uk
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dnscrypt-uk
+  template:
+    metadata:
+      labels:
+        app: dnscrypt-uk
+    spec:
+      containers:
+      - env:
+        image: eanu/dnscrypt-server-docker:1.36
+        name: dnscrypt-uk
+        volumeMounts:
+          - name: dnscrypt-keys
+            mountPath: /opt/encrypted-dns/etc/keys
+        command: ["/entrypoint.sh", "start"]
+        resources:
+          requests:
+            memory: "1Gi"
+      restartPolicy: Always
+      volumes:
+        - name: dnscrypt-keys
+          persistentVolumeClaim:
+            claimName: nfs-pvc
+

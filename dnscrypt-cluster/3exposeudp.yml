@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dnscrypt-uk-udp-service
+  namespace: default
+  labels:
+    app: dnscrypt-uk
+spec:
+  ports:
+    - protocol: UDP
+      port: 443
+  selector:
+    app: dnscrypt-uk
+  type: LoadBalancer

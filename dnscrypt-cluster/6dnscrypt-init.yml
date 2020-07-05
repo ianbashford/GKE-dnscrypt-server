@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: dnscrypt-init
+spec:
+  template:
+    metadata:
+      name: dnscrypt-init
+    spec:
+      containers:
+      - name: dnscrypt-init
+        image: eanu/dnscrypt-server-docker:1.36
+        command: ["/entrypoint.sh", "init", "-A", "-M", "0.0.0.0:9100", "-N", "YOUR DNSCRYPT SERVER NAME", "-E", "<YOUR IP ADDRESS>:443"]
+        volumeMounts:
+          - name: dnscrypt-keys
+            mountPath: /opt/encrypted-dns/etc/keys
+      restartPolicy: Never
+      volumes:
+        - name: dnscrypt-keys
+          persistentVolumeClaim:
+            claimName: nfs-pvc
+
