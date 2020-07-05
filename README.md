@@ -1,8 +1,12 @@
 # GKE-dnscrypt-server
 Google Kubernetes Engine scripts for dnscrypt-server-docker
 
-
 ## Google Kubernetes Engine scripts for dnscrypt-server-docker
+### Other projects
+[dnscrypt/dnscrypt-server-docker](https://github.com/dnscrypt/dnscrypt-server-docker) Upstream Project
+[ianbashford/dnscrypt-server-docker](https://github.com/ianbashford/dnscrypt-server-docker) K8S tweaks to upstream...
+[eanu/dnscrypt-server-docker](https://hub.docker.com/r/eanu/dnscrypt-server-docker/tags) docker hub tagged images
+
 ### Objectives
 Setup a scalable GKE K8S Cluster.
 encrypted-dns and unbound don't consume many resources, but it can be useful to scale the K8S cluster beyond one pod for deploying new releases.
