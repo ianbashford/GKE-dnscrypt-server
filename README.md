@@ -38,30 +38,30 @@ Each yaml script is run using ```kubectl apply -f <filename>```
 
 First, create the cluster and setup kubectl with using
 
-1createcluster.sh
+```1createcluster.sh```
 
-Start with the nfs-server scripts
+Then the nfs-server scripts
 
-1nfsstorage.yml  creates the regular 1Gi storage
+```1nfsstorage.yml```  creates the regular 1Gi storage
 
-2nfsdeploy.yml deploys the nfs server
+```2nfsdeploy.yml``` deploys the nfs server
 
-3nfsservice.yml will deploy the nfs service (internally to the cluster)
+```3nfsservice.yml``` will deploy the nfs service (internally to the cluster)
 
-4claimonnfs.yml creates the ReadWriteMany claim that the dns cluster will use
+```4claimonnfs.yml``` creates the ReadWriteMany claim that the dns cluster will use
 
 
 Then, the scripts in dnscrypt-cluster
 
-3exposeudp.yml will create the udp service and allocate an external ip which you can retrieve using
+```3exposeudp.yml``` will create the udp service and allocate an external ip which you can retrieve using
 
-4getip.sh 
+```4getip.sh``` to retrieve the external ip address of the cluster
 
-5exposetcp.yml should be modified to use the external ip address
+```5exposetcp.yml``` should be modified to use the external ip address
 
-6dnscrypt-init.yml should be modified to use the external ip address
+```6dnscrypt-init.yml``` should be modified to use the external ip address
 
-7deploy.yml will properly deploy the pods behind the service
+```7deploy.yml``` will properly deploy the pods behind the service
 
 It should all be working now....
 
